@@ -37,4 +37,4 @@ jobs:
         uses: golangci/golangci-lint-action@v6
         with:
           version: ${{ env.GOLANGCI_LINT_VERSION }}
-          skip-pkg-cache: true
+          skip-cache: true

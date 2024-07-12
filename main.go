@@ -166,8 +166,20 @@ func (m *Module) updateState(id, state string) {
 		}
 		perStr := strconv.FormatFloat(per, 'f', 0, 64)
 
+		var class string
+		if per <= float64(m.cfg.Geyser.Low) {
+			class = "low"
+		} else if per <= float64(m.cfg.Geyser.Warning) {
+			class = "warning"
+		}
+
 		if elem := m.mod.Element().QuerySelector("#heat"); elem != nil {
 			elem.SetAttribute("style", percentageVar+perStr)
+			elem.Class().Remove("low")
+			elem.Class().Remove("warning")
+			if class != "" {
+				elem.Class().Add(class)
+			}
 		}
 		if elem := m.mod.Element().QuerySelector("#geyserText .super"); elem != nil {
 			elem.SetTextContent(strconv.Itoa(int(per)))
@@ -179,8 +191,20 @@ func (m *Module) updateState(id, state string) {
 		}
 		perStr := strconv.FormatFloat(per, 'f', 2, 64)
 
+		var class string
+		if per <= float64(m.cfg.Tank.Low) {
+			class = "low"
+		} else if per <= float64(m.cfg.Tank.Warning) {
+			class = "warning"
+		}
+
 		if elem := m.mod.Element().QuerySelector("#water"); elem != nil {
 			elem.SetAttribute("style", percentageVar+perStr)
+			elem.Class().Remove("low")
+			elem.Class().Remove("warning")
+			if class != "" {
+				elem.Class().Add(class)
+			}
 		}
 	}
 }

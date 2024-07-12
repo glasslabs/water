@@ -14,11 +14,11 @@
     stroke: rgb(87, 148, 242);
 }
 
-#heat.geyser.warm {
+#heat.geyser.warning {
     stroke: rgb(255, 152, 48);
 }
 
-#heat.geyser.hot {
+#heat.geyser.low {
     stroke: rgb(242, 73, 92);
 }
 
@@ -36,7 +36,7 @@
     stroke: rgb(55 199 255);
 }
 
-#water.tank.medium {
+#water.tank.warning {
     stroke: rgb(255, 152, 48);
 }
 

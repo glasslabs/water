@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <style>
+            body {
+                background: #000;
+            }
+        </style>
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+
+<svg viewBox="0 0 250 250" width="250" height="250">
+    <g id="geyser">
+        <circle r="100" cx="125" cy="125" transform="rotate(123,125,125)"
+                fill="none" stroke="rgb(40,40,40)" stroke-width="20" stroke-dasharray="510.82 785.40"/>
+        <circle id="heat" r="100" cx="125" cy="125" class="geyser" style="--percentage: 0"/>
+    </g>
+
+    <g id="tank">
+        <circle r="100" cx="125" cy="125" transform="rotate(58,125,125)"
+                fill="none" stroke="rgb(30,30,30)" stroke-width="15" stroke-dasharray="109.82 785.40"/>
+        <circle id="water" r="100" cx="125" cy="125" transform="rotate(118,125,125)" class="tank" style="--percentage: 0"/>
+    </g>
+
+    <text id="geyserText" x="50%" y="50%" class="number" dominant-baseline="middle" text-anchor="middle">
+        <tspan class="super"></tspan>
+        <tspan class="units" dx="-10" dy="6">%</tspan>
+    </text>
+</svg>
+    </body>
+</html>

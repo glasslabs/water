@@ -1,0 +1,58 @@
+.geyser {
+    r: var(--radius);
+    transform: rotate(129deg);
+    transform-origin: center center;
+    fill: none;
+    stroke-width: 5;
+    stroke-dasharray: calc(2 * pi * var(--radius));
+    stroke-dashoffset: calc(2 * pi * var(--radius) * (1 - ((var(--percentage) / 100) * 0.78)));
+    transition: stroke-dashoffset 0.3s linear 0.1s;
+}
+
+#heat.geyser {
+    --radius: 100;
+    stroke: rgb(87, 148, 242);
+}
+
+#heat.geyser.warm {
+    stroke: rgb(255, 152, 48);
+}
+
+#heat.geyser.hot {
+    stroke: rgb(242, 73, 92);
+}
+
+.tank {
+    r: var(--radius);
+    fill: none;
+    stroke-width: 5;
+    stroke-dasharray: calc(2 * pi * var(--radius));
+    stroke-dashoffset: calc(2 * pi * var(--radius) * (1 - ((var(--percentage) / 100) * -0.16)));
+    transition: stroke-dashoffset 0.3s linear 0.1s;
+}
+
+#water.tank {
+    --radius: 100;
+    stroke: rgb(55 199 255);
+}
+
+#water.tank.medium {
+    stroke: rgb(255, 152, 48);
+}
+
+#water.tank.low {
+    stroke: rgb(242, 73, 92);
+}
+
+#geyserText {
+    fill: #fff;
+    font-size: 60px;
+}
+
+#geyserText .sub {
+    font-size: 45px;
+}
+
+#geyserText .units {
+    font-size: 20px;
+}

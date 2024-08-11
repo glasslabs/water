@@ -15,6 +15,7 @@ modules:
       sensorIds:
         geyserPct: sensor.geyser_hot_water
         tankPct: sensor.reservoir_percentage
+        waterConnected: binary_sensor.water_connected
       geyser:
         warning: 50
         low: 30
@@ -32,6 +33,10 @@ The Home Assistant geyser percentage sensor ID.
 ### Tank Percentage Sensor ID (sensorIds.tankPct)
 
 The Home Assistant water tank percentage sensor ID.
+
+### Water Connection Sensor ID (sensorIds.waterConnected)
+
+The Home Assistant binary sensor ID indicating if the mains water has pressure.
 
 ### Geyser Warning Percentage (geyser.warning)
 

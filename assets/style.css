@@ -22,6 +22,10 @@
     stroke: rgb(242, 73, 92);
 }
 
+#icons .off {
+    display: none;
+}
+
 .tank {
     r: var(--radius);
     fill: none;

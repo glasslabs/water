@@ -5,6 +5,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"slices"
 	"strconv"
 	"strings"
 	"time"
@@ -26,8 +27,9 @@ type Config struct {
 	URL       string `yaml:"url"`
 	Token     string `yaml:"token"`
 	SensorIDs struct {
-		GeyserPct string `yaml:"geyserPct"`
-		TankPct   string `yaml:"tankPct"`
+		GeyserPct      string `yaml:"geyserPct"`
+		TankPct        string `yaml:"tankPct"`
+		WaterConnected string `yaml:"waterConnected"`
 	} `yaml:"sensorIds"`
 	Geyser struct {
 		Warning int `yaml:"warning"`
@@ -117,7 +119,7 @@ func (m *Module) setup() error {
 }
 
 func (m *Module) syncStates() error {
-	states, err := m.ha.FilterStates("sensor")
+	states, err := m.ha.FilterStates("sensor", "binary_sensor")
 	if err != nil {
 		return fmt.Errorf("getting states: %w", err)
 	}
@@ -144,7 +146,8 @@ func (m *Module) listenStates() error {
 		if event.EventType != "state_changed" {
 			continue
 		}
-		if strings.TrimSuffix(strings.SplitAfter(event.Data.EntityID, ".")[0], ".") != "sensor" {
+		prefix := strings.TrimSuffix(strings.SplitAfter(event.Data.EntityID, ".")[0], ".")
+		if !slices.Contains([]string{"sensor", "binary_sensor"}, prefix) {
 			continue
 		}
 
@@ -204,6 +207,14 @@ func (m *Module) updateState(id, state string) {
 			elem.Class().Remove("warning")
 			if class != "" {
 				elem.Class().Add(class)
+			}
+		}
+	case m.cfg.SensorIDs.WaterConnected:
+		connected := state == "on"
+		if elem := m.mod.Element().QuerySelector("#water-disconnect"); elem != nil {
+			elem.Class().Remove("off")
+			if connected {
+				elem.Class().Add("off")
 			}
 		}
 	}

@@ -25,6 +25,7 @@ linters:
     - gochecknoglobals
     - gochecknoinits
     - gocognit
+    - goconst
     - gocyclo
     - interfacebloat
     - ireturn
